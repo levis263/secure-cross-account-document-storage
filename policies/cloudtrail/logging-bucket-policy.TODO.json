@@ -1,0 +1,13 @@
+﻿{
+  "_comment": "PLACEHOLDER — do not commit as real policy. This is for the NEW logging bucket that receives CloudTrail's delivered logs — never the same bucket being audited. Must include Block Public Access equivalent (via bucket settings, not shown here) and a policy scoping s3:PutObject to the cloudtrail.amazonaws.com service principal for this specific trail's ARN only.",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "REPLACE",
+      "Effect": "Allow",
+      "Principal": { "Service": "cloudtrail.amazonaws.com" },
+      "Action": "REPLACE",
+      "Resource": "REPLACE"
+    }
+  ]
+}
