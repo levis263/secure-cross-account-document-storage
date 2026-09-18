@@ -1,4 +1,4 @@
-# Project 1 — Secure cross-account document storage
+# Secure cross-account document storage
 
 Source artifacts for the AWS architecture documented in the [engineering platform](../../engineering-platform) portfolio entry. This repo holds the real policy JSON and reproduction steps; the platform entry holds the narrative and lessons learned.
 
@@ -22,7 +22,8 @@ Two roles enforce separation of duties in the Data account:
 
 - `policies/trust-policy.json` — trust relationship on `CrossAccountDocumentRole`
 - `policies/assume-role-policy.json` — scoped assume-role permission on the App-account side (`Project1AssumeDocumentRole`)
-- `policies/document-access-role-policy.TODO.json` — placeholder; needs the real saved policy pasted in
+- `policies/document-access-role-policy.json` — final permissions on `CrossAccountDocumentRole`: two statements, `s3:GetObject` scoped to the bucket and `kms:Decrypt` scoped to the specific key ARN
+- `policies/cloudtrail/` — intended CloudTrail trail and logging-bucket configuration (currently placeholders pending real deployment)
 
 ## Reproducing the test
 
@@ -44,3 +45,5 @@ A successful response shows `"ServerSideEncryption": "aws:kms"` and the customer
 
 - Trust policy currently trusts the App account root rather than the specific principal ARN — planned tightening.
 - Bucket versioning means pre-KMS object versions (encrypted under SSE-S3) remain retrievable without `kms:Decrypt` — see the platform entry's "Outcomes & Lessons" for the full discussion.
+
+- CloudTrail audit logging: in progress — proves who assumed the role and what was actually accessed, closing the "provable audit trail" claim from the original problem statement.
