@@ -1,0 +1,16 @@
+﻿{
+  "TrailName": "cross-account-secure-document-cloudtrail",
+  "TrailArn": "arn:aws:cloudtrail:eu-west-2:906099689108:trail/cross-account-secure-document-cloudtrail",
+  "S3BucketName": "cross-account-document-logs",
+  "EnableLogFileValidation": true,
+  "EventSelectors": {
+    "ManagementEvents": "ReadWrite",
+    "DataEvents": {
+      "S3": {
+        "ResourceARNPrefix": "arn:aws:s3:::project1-sensitive-data/",
+        "ReadOnly": true
+      }
+    }
+  },
+  "_status": "Deployed and correctly scoped, confirmed via console. Event-capture evidence (raw log export) pending."
+}
